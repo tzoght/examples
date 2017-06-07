@@ -1,0 +1,14 @@
+{
+  "name": "control_panel_api",
+  "description": "",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node src/api/index.js"
+  },
+  "dependencies": {
+    "hermesjs": "1.x",
+    "hermesjs-router": "1.x",
+    "hermesjs-mqtt": "latest",
+    "node-yaml-config": "0.0.4"
+  }
+}

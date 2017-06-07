@@ -1,0 +1,56 @@
+asyncapi: '1.0.0'
+info:
+  title: Streetlights API
+  version: '0.1.0'
+host: 'test.mosquitto.org'
+baseTopic: 'smartylighting.streetlights.1.0'
+schemes:
+  - mqtt
+
+topics:
+  'action.{streetlight_id}.turn.on':
+    subscribe:
+      $ref: '#/components/messages/turnOnOff'
+
+  'action.{streetlight_id}.turn.off':
+    subscribe:
+      $ref: '#/components/messages/turnOnOff'
+
+  'event.{streetlight_id}.lighting.measured':
+    publish:
+      $ref: '#/components/messages/lightMeasured'
+
+components:
+  messages:
+    lightMeasured:
+      summary: A message to inform about environmental lighting conditions.
+      payload:
+        $ref: "#/components/schemas/lightMeasuredPayload"
+    turnOnOff:
+      summary: A message indicating us if we should turn the light on or off.
+      payload:
+        $ref: "#/components/schemas/turnOnOffPayload"
+
+  schemas:
+    lightMeasuredPayload:
+      type: object
+      properties:
+        lumens:
+          type: number
+          minimum: 0
+          description: Light intensity measured in lumens.
+        sent_at:
+          type: string
+          format: date-time
+    turnOnOffPayload:
+      type: object
+      properties:
+        command:
+          type: string
+          enum:
+            - on
+            - off
+          description: Whether to turn on or off the light.
+        sent_at:
+          type: string
+          format: date-time

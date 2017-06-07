@@ -1,0 +1,20 @@
+default:
+  broker:
+    mqtt:
+      host_url: mqtt://test.mosquitto.org
+      topics: smartylighting/streetlights/1/0/#
+      qos:
+      protocol: mqtt
+      retain:
+
+
+development:
+
+test:
+
+staging:
+
+production:
+  broker:
+    mqtt:
+      host_url: mqtt://test.mosquitto.org
